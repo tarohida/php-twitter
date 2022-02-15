@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace tarospace\Domain\Twitter\TweetCount\Exception;
+namespace TaroHida\Twitter\TweetCount\Exception;
 
 use Exception;
 

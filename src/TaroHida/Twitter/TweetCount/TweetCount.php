@@ -1,19 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace tarospace\Domain\Twitter\TweetCount;
+namespace TaroHida\Twitter\TweetCount;
 
+use TaroHida\Twitter\TweetCount\Exception\TweetCountValidateException;
 use TaroHida\Types\Exception\PhpTypesInvalidArgumentException;
 use TaroHida\Types\PositiveInteger;
-use tarospace\Domain\Twitter\TweetCount\Exception\TweetCountValidateException;
 
 class TweetCount
 {
     private PositiveInteger $count;
 
-    public function getCount(): int
+    /**
+     * @throws TweetCountValidateException
+     */
+    public function __construct(int $count)
     {
-        return $this->count->getValue();
+        try {
+            $this->count = new PositiveInteger($count);
+        } catch (PhpTypesInvalidArgumentException $e) {
+            throw new TweetCountValidateException();
+        }
     }
 
     /**
@@ -27,15 +34,8 @@ class TweetCount
         return new TweetCount((int)$count);
     }
 
-    /**
-     * @throws TweetCountValidateException
-     */
-    public function __construct(int $count)
+    public function getCount(): int
     {
-        try {
-            $this->count = new PositiveInteger($count);
-        } catch (PhpTypesInvalidArgumentException $e) {
-            throw new TweetCountValidateException();
-        }
+        return $this->count->getValue();
     }
 }
