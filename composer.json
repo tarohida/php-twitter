@@ -1,28 +1,29 @@
 {
-    "name": "tarohida/php-twitter-tweet",
-    "description": "",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Taro Hida",
-            "email": "sk8trou@gmail.com"
-        }
-    ],
-    "require": {
-        "ext-pdo": "*"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.5"
-    },
-    "autoload": {
-        "psr-4": {
-            "TaroHida\\Twitter\\Tweet\\": "src/TaroHida/Twitter/Tweet"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
+  "name": "tarohida/php-twitter-tweet",
+  "description": "php domain object",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Taro Hida",
+      "email": "sk8trou@gmail.com"
     }
+  ],
+  "require": {
+    "ext-pdo": "*",
+    "tarohida/php-types": "v2.0.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "TaroHida\\Twitter\\Tweet\\": "src/TaroHida/Twitter/Tweet"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  }
 }
