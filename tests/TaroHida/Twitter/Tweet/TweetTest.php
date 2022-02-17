@@ -39,4 +39,19 @@ class TweetTest extends TestCase
         self::assertSame($name, $tweet->getUserName());
         self::assertSame($profile_image_url, $tweet->getUserProfileImageUrl());
     }
+
+    public function test_method_satisfy()
+    {
+        $this->assertSatisfy(true, 1);
+        $this->assertSatisfy(false, 2);
+    }
+
+    private function assertSatisfy(bool $expected, int $id)
+    {
+        $factory = new TweetFactory();
+        $factory->setId($id);
+        $tweet = $factory->createInstance();
+        $specification = new SpecificationExample();
+        self::assertSame($expected, $tweet->matchTo($specification));
+    }
 }
