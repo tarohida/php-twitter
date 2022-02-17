@@ -122,7 +122,28 @@ class Tweet
 
     public function getUser(): User
     {
+        trigger_error('Method ' . __METHOD__ . ' is deprecated, and will be removed v3.0', E_USER_DEPRECATED);
         return $this->user;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->user->id();
+    }
+
+    public function getUserScreenName(): string
+    {
+        return $this->user->screenName();
+    }
+
+    public function getUserName(): string
+    {
+        return $this->user->name();
+    }
+
+    public function getUserProfileImageUrl(): string
+    {
+        return $this->user->profileImageUrl();
     }
 
     public function getEntities(): stdClass

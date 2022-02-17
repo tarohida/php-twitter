@@ -34,9 +34,9 @@ class TweetTest extends TestCase
         self::assertSame($entities, $tweet->getEntities());
         self::assertSame($source, $tweet->getSource());
         self::assertSame($text, $tweet->getText());
-        self::assertSame($user_id, $tweet->getUser()->id());
-        self::assertSame($screen_name, $tweet->getUser()->screenName());
-        self::assertSame($name, $tweet->getUser()->name());
-        self::assertSame($profile_image_url, $tweet->getUser()->profileImageUrl());
+        self::assertSame($user_id, $tweet->getUserId());
+        self::assertSame($screen_name, $tweet->getUserScreenName());
+        self::assertSame($name, $tweet->getUserName());
+        self::assertSame($profile_image_url, $tweet->getUserProfileImageUrl());
     }
 }
