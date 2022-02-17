@@ -7,7 +7,7 @@
 /** @noinspection PhpStaticAsDynamicMethodCallInspection */
 declare(strict_types=1);
 
-namespace Tests\Twitter\Tweet;
+namespace Tests\TaroHida\Twitter\Tweet;
 
 use PHPUnit\Framework\TestCase;
 use TaroHida\Twitter\Tweet\User;

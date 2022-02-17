@@ -81,7 +81,7 @@ class TweetStream implements Iterator
     {
         $ret = $this->tweets;
         usort($ret, function ($one_tweet, $next_tweet) {
-            return $one_tweet->getId() < $next_tweet->getId();
+            return ($one_tweet->getId() < $next_tweet->getId()) ? 1 : -1;
         });
         return new TweetStream($ret);
     }
