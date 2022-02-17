@@ -17,9 +17,31 @@ class TweetFactory
     private string $source;
     private string $text;
     private ?string $screen_name;
+    private ?stdClass $entities;
+    private string $user_name;
+    private string $profile_image_url;
 
-    public function __construct()
+    public function __construct(
+        int               $id = null,
+        DateTimeImmutable $datetime = null,
+        stdClass          $entities = null,
+        string            $source = null,
+        string            $text = null,
+        int               $user_id = null,
+        string            $screen_name = null,
+        string            $user_name = null,
+        string            $user_profile_image = null
+    )
     {
+        $this->id = $id ?? 1;
+        $this->dateTime = $datetime ?? new DateTimeImmutable('now');
+        $this->entities = $entities ?? new stdClass();
+        $this->source = $source ?? 'source1';
+        $this->text = $text ?? 'text1';
+        $this->user_id = $user_id ?? 1;
+        $this->screen_name = $screen_name ?? 'screen_name1';
+        $this->user_name = $user_name ?? 'name1';
+        $this->profile_image_url = $user_profile_image ?? 'https://example.example/path/to/file.png';
     }
 
     public function setId(?int $id)
@@ -53,16 +75,16 @@ class TweetFactory
     public function createInstance(): Tweet
     {
         return new Tweet(
-            $this->id ?? 1,
-            $this->dateTime ?? new DateTimeImmutable('now'),
-            new stdClass(),
-            $this->source ?? 'source1',
-            $this->text ?? 'text1',
+            $this->id,
+            $this->dateTime,
+            $this->entities,
+            $this->source,
+            $this->text,
             new User(
-                $this->user_id ?? 1,
-                $this->screen_name ?? 'screen_name1',
-                'name1',
-                'https://example.example/path/to/file.png'
+                $this->user_id,
+                $this->screen_name,
+                $this->user_name,
+                $this->profile_image_url
             )
         );
     }
