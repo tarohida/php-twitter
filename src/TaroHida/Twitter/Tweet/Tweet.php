@@ -119,4 +119,9 @@ class Tweet
     {
         $client->retweet($this->id);
     }
+
+    public function favoriteBy(FavoriteClientInterface $client)
+    {
+        $client->favorite($this->id);
+    }
 }

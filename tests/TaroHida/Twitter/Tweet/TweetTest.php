@@ -11,6 +11,7 @@ namespace Tests\TaroHida\Twitter\Tweet;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use TaroHida\Twitter\Tweet\FavoriteClientInterface;
 use TaroHida\Twitter\Tweet\RetweetClientInterface;
 
 class TweetTest extends TestCase
@@ -67,5 +68,18 @@ class TweetTest extends TestCase
             ->method('retweet')
             ->with($id);
         $tweet->retweetBy($client);
+    }
+
+    public function test_method_favoriteBy()
+    {
+        $id = 39;
+        $factory = new TweetFactory();
+        $factory->setId($id);
+        $tweet = $factory->createInstance();
+        $client = $this->createMock(FavoriteClientInterface::class);
+        $client->expects(self::once())
+            ->method('favorite')
+            ->with($id);
+        $tweet->favoriteBy($client);
     }
 }
