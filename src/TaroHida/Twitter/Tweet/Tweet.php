@@ -114,4 +114,9 @@ class Tweet
     {
         return $specification->isSatisfiedFrom($this);
     }
+
+    public function retweetBy(RetweetClientInterface $client)
+    {
+        $client->retweet($this->id);
+    }
 }
