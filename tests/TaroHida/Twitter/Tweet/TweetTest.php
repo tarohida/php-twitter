@@ -101,6 +101,6 @@ class TweetTest extends TestCase
                 }),
                 $tweet_message
             );
-        $tweet->quoteBy($client, $tweet_message);
+        $tweet->retweetWithQuoteBy($client, $tweet_message);
     }
 }

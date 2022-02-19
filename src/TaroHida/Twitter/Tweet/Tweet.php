@@ -125,7 +125,7 @@ class Tweet
         $client->favorite($this->id);
     }
 
-    public function quoteBy(QuoteRetweetClientInterface $client, string $tweet_message)
+    public function retweetWithQuoteBy(QuoteRetweetClientInterface $client, string $tweet_message)
     {
         $client->postQuoteTweetWith($this, $tweet_message);
     }
