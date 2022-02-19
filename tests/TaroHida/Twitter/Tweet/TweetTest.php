@@ -12,7 +12,9 @@ use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use TaroHida\Twitter\Tweet\FavoriteClientInterface;
+use TaroHida\Twitter\Tweet\QuoteRetweetClientInterface;
 use TaroHida\Twitter\Tweet\RetweetClientInterface;
+use TaroHida\Twitter\Tweet\Tweet;
 
 class TweetTest extends TestCase
 {
@@ -81,5 +83,24 @@ class TweetTest extends TestCase
             ->method('favorite')
             ->with($id);
         $tweet->favoriteBy($client);
+    }
+
+    public function test_method_quoteRetweetBy()
+    {
+        $id = 39;
+        $tweet_message = 'test message.';
+        $factory = new TweetFactory();
+        $factory->setId($id);
+        $tweet = $factory->createInstance();
+        $client = $this->createMock(QuoteRetweetClientInterface::class);
+        $client->expects(self::once())
+            ->method('postQuoteTweetWith')
+            ->with(
+                $this->callback(function (Tweet $tweet) use ($id) {
+                    return $tweet->getId() === $id;
+                }),
+                $tweet_message
+            );
+        $tweet->retweetWithQuoteMessageBy($client, $tweet_message);
     }
 }
