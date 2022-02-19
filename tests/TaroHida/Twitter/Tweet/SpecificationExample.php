@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Twitter\Tweet;
+namespace Tests\TaroHida\Twitter\Tweet;
 
 use TaroHida\Twitter\Tweet\Tweet;
 use TaroHida\Twitter\Tweet\TweetSpecificationInterface;

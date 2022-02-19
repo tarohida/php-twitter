@@ -15,7 +15,7 @@ class User
     private string $profile_image_url_origin;
 
     /**
-     * @throws \TaroHida\Twitter\Tweet\Exception\UserInvalidArgumentException
+     * @throws UserInvalidArgumentException
      */
     public function __construct(int $user_id, string $screen_name, string $name, string $profile_image_url)
     {
