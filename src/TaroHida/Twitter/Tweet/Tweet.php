@@ -6,6 +6,7 @@ namespace TaroHida\Twitter\Tweet;
 
 use DateTimeImmutable;
 use stdClass;
+use TaroHida\Twitter\Tweet\Exception\TweetValidateException;
 
 class Tweet
 {
@@ -36,13 +37,19 @@ class Tweet
      */
     private stdClass $entities;
 
+    /**
+     * @throws TweetValidateException
+     */
     public function __construct(
         int               $id,
         DateTimeImmutable $datetime,
         stdClass          $entities,
         string            $source,
         string            $text,
-        User              $user
+        int               $user_id,
+        string            $screen_name,
+        string            $user_name,
+        string            $user_profile_image_url
     )
     {
         $this->id = $id;
@@ -50,7 +57,16 @@ class Tweet
         $this->entities = $entities;
         $this->source = $source;
         $this->text = $text;
-        $this->user = $user;
+        try {
+            $this->user = new User(
+                $user_id,
+                $screen_name,
+                $user_name,
+                $user_profile_image_url
+            );
+        } catch (Exception\UserInvalidArgumentException $e) {
+            throw new TweetValidateException('コンストラクタ引数が不正です。', 0, $e);
+        }
     }
 
     public function equals(self $tweet): bool
@@ -76,13 +92,6 @@ class Tweet
     public function getDateTime(): DateTimeImmutable
     {
         return $this->datetime;
-    }
-
-    /** @noinspection PhpUnused */
-    public function getUser(): User
-    {
-        trigger_error('Method ' . __METHOD__ . ' is deprecated, and will be removed v3.0', E_USER_DEPRECATED);
-        return $this->user;
     }
 
     public function getUserId(): int

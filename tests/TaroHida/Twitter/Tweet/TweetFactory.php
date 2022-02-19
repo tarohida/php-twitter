@@ -1,13 +1,12 @@
-<?php
+<?php /** @noinspection PhpUnused */
 declare(strict_types=1);
 
 namespace Tests\TaroHida\Twitter\Tweet;
 
 use DateTimeImmutable;
 use stdClass;
-use TaroHida\Twitter\Tweet\Exception\UserInvalidArgumentException;
+use TaroHida\Twitter\Tweet\Exception\TweetValidateException;
 use TaroHida\Twitter\Tweet\Tweet;
-use TaroHida\Twitter\Tweet\User;
 
 class TweetFactory
 {
@@ -70,7 +69,7 @@ class TweetFactory
     }
 
     /**
-     * @throws UserInvalidArgumentException
+     * @throws TweetValidateException
      */
     public function createInstance(): Tweet
     {
@@ -80,12 +79,10 @@ class TweetFactory
             $this->entities,
             $this->source,
             $this->text,
-            new User(
-                $this->user_id,
-                $this->screen_name,
-                $this->user_name,
-                $this->profile_image_url
-            )
+            $this->user_id,
+            $this->screen_name,
+            $this->user_name,
+            $this->profile_image_url
         );
     }
 
