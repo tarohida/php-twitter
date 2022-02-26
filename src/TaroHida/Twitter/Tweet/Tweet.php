@@ -138,4 +138,9 @@ class Tweet
     {
         $client->postQuoteTweetWith($this, $tweet_message);
     }
+
+    public function replyWithMessageBy(ReplyClientInterface $client, string $reply_message)
+    {
+        $client->replyTo($this, $reply_message);
+    }
 }

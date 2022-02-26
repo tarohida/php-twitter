@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 use TaroHida\Twitter\Tweet\FavoriteClientInterface;
 use TaroHida\Twitter\Tweet\QuoteRetweetClientInterface;
+use TaroHida\Twitter\Tweet\ReplyClientInterface;
 use TaroHida\Twitter\Tweet\RetweetClientInterface;
 use TaroHida\Twitter\Tweet\Tweet;
 
@@ -102,5 +103,24 @@ class TweetTest extends TestCase
                 $tweet_message
             );
         $tweet->retweetWithQuoteBy($client, $tweet_message);
+    }
+
+    public function test_reply_to_Tweet()
+    {
+        // setup
+        $message = 'test reply message';
+
+        // input
+        $factory = new TweetFactory();
+        $tweet = $factory->createInstance();
+
+        // expected output
+        $client = $this->createMock(ReplyClientInterface::class);
+        $client->expects(self::once())
+            ->method('replyTo')
+            ->with($tweet, $message);
+
+        // perform
+        $tweet->replyWithMessageBy($client, $message);
     }
 }
