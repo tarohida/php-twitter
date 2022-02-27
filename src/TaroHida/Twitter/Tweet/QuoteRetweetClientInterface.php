@@ -5,5 +5,5 @@ namespace TaroHida\Twitter\Tweet;
 
 interface QuoteRetweetClientInterface
 {
-    public function postQuoteTweetWith(Tweet $tweet, string $message): void;
+    public function postQuoteTweetWith(Tweet $quoted_tweet, string $message): void;
 }
