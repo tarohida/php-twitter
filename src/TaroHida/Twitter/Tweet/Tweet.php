@@ -136,7 +136,7 @@ class Tweet
 
     public function retweetWithQuoteBy(QuoteRetweetClientInterface $client, string $tweet_message)
     {
-        $client->postQuoteTweetWith($this, $tweet_message);
+        $client->postQuoteTweetWith($tweet_message, $this);
     }
 
     public function replyWithMessageBy(ReplyClientInterface $client, string $reply_message)

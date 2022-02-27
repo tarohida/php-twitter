@@ -97,10 +97,10 @@ class TweetTest extends TestCase
         $client->expects(self::once())
             ->method('postQuoteTweetWith')
             ->with(
+                $tweet_message,
                 $this->callback(function (Tweet $tweet) use ($id) {
                     return $tweet->getId() === $id;
-                }),
-                $tweet_message
+                })
             );
         $tweet->retweetWithQuoteBy($client, $tweet_message);
     }
