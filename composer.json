@@ -20,10 +20,5 @@
     "psr-4": {
       "TaroHida\\Twitter\\Tweet\\": "src/TaroHida/Twitter/Tweet"
     }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Tests\\TaroHida\\": "tests/TaroHida"
-    }
   }
 }
