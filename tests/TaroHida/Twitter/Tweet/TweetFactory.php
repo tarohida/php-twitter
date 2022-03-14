@@ -90,4 +90,9 @@ class TweetFactory
     {
         $this->text = $text;
     }
+
+    public function setEntities(stdClass $entities)
+    {
+        $this->entities = $entities;
+    }
 }

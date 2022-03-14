@@ -123,4 +123,25 @@ class TweetTest extends TestCase
         // perform
         $tweet->replyWithMessageBy($client, $message);
     }
+
+    public function test_ツイートがリプライかどうかを判別する()
+    {
+        $entities = new stdClass();
+        $entities->user_mentions = [];
+        $this->callMethodIsReplyWith(false, $entities);
+
+        $entities = new stdClass();
+        $entities->user_mentions = [
+            0 => new stdClass()
+        ];
+        $this->callMethodIsReplyWith(true, $entities);
+    }
+
+    private function callMethodIsReplyWith(bool $expected_output, stdClass $entities)
+    {
+        $factory = new TweetFactory();
+        $factory->setEntities($entities);
+        $tweet = $factory->createInstance();
+        self::assertSame($expected_output, $tweet->isReply());
+    }
 }

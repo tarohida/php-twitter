@@ -143,4 +143,12 @@ class Tweet
     {
         $client->replyTo($this, $reply_message);
     }
+
+    public function isReply(): bool
+    {
+        if (!isset($this->entities->user_mentions) || empty($this->entities->user_mentions)) {
+            return false;
+        }
+        return true;
+    }
 }
